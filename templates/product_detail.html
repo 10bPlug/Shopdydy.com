@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - Product Details{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Catalog</a></li>
+        <li class="breadcrumb-item">{{ product.category }}</li>
+        <li class="breadcrumb-item active">{{ product.name }}</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <!-- Product Image -->
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                {% if product.image_data %}
+                <img src="data:image/png;base64,{{ product.image_data }}" 
+                     alt="{{ product.name }}" 
+                     class="img-fluid rounded"
+                     style="width: 100%; max-height: 500px; object-fit: contain; background-color: #f8f9fa;">
+                {% else %}
+                <div class="d-flex align-items-center justify-content-center bg-light rounded"
+                     style="height: 400px;">
+                    <i class="fas fa-image fa-5x text-muted"></i>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Product Information -->
+    <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-primary text-white">
+                <h2 class="mb-0">
+                    <i class="fas fa-box me-2"></i>Product Details
+                </h2>
+            </div>
+            <div class="card-body p-4">
+                <!-- Product Title and Badges -->
+                <div class="mb-3">
+                    <h1 class="fw-bold mb-2">{{ product.name }}</h1>
+                    <div class="mb-3">
+                        <span class="badge bg-primary me-2">{{ product.category }}</span>
+                        <span class="badge bg-secondary me-2">{{ product.subcategory }}</span>
+                        <span class="badge bg-info">{{ product.brand }}</span>
+                    </div>
+                </div>
+                
+                <!-- SKU and Status -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <strong><i class="fas fa-barcode me-2"></i>SKU:</strong>
+                        <span class="text-monospace">{{ product.sku }}</span>
+                    </div>
+                    <div class="col-md-6">
+                        <strong><i class="fas fa-check-circle me-2"></i>Status:</strong>
+                        <span class="badge bg-success">{{ product.stock_status }}</span>
+                    </div>
+                </div>
+                
+                <!-- Pricing -->
+                <div class="card bg-light mb-4">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary fw-bold mb-2">
+                            {{ product.price_ghs|currency }}
+                        </h3>
+                        <p class="text-muted mb-0">
+                            Equivalent to {{ product.price_usd|usd_currency }} USD
+                        </p>
+                        <small class="text-muted">
+                            <i class="fas fa-tag me-1"></i>{{ product.condition }} Condition
+                        </small>
+                    </div>
+                </div>
+                
+                <!-- Product Description -->
+                <div class="mb-4">
+                    <h4><i class="fas fa-info-circle me-2"></i>Description</h4>
+                    <p class="text-muted">{{ product.description }}</p>
+                </div>
+                
+                <!-- Key Features -->
+                {% if product.features_list %}
+                <div class="mb-4">
+                    <h4><i class="fas fa-star me-2"></i>Key Features</h4>
+                    <ul class="list-unstyled">
+                        {% for feature in product.features_list %}
+                            {% if feature.strip() %}
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                {{ feature.replace('•', '').strip() }}
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <!-- Action Buttons -->
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button class="btn btn-primary btn-lg me-md-2" onclick="contactForPrice()">
+                        <i class="fas fa-phone me-2"></i>Contact for Quote
+                    </button>
+                    <button class="btn btn-outline-secondary btn-lg" onclick="shareProduct()">
+                        <i class="fas fa-share me-2"></i>Share
+                    </button>
+                </div>
+                
+                <!-- Additional Information -->
+                <div class="mt-4 pt-4 border-top">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <i class="fas fa-calendar-plus text-muted"></i>
+                            <div class="mt-2">
+                                <strong>Date Added</strong>
+                                <div class="text-muted">{{ product.date_added }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="fas fa-shield-alt text-muted"></i>
+                            <div class="mt-2">
+                                <strong>Warranty</strong>
+                                <div class="text-muted">Included</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="fas fa-truck text-muted"></i>
+                            <div class="mt-2">
+                                <strong>Delivery</strong>
+                                <div class="text-muted">Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Related Products Section -->
+<div class="row mt-5">
+    <div class="col-12">
+        <h3 class="mb-4">
+            <i class="fas fa-cubes me-2"></i>Browse Similar Products
+        </h3>
+        <div class="d-flex gap-2 flex-wrap">
+            <a href="{{ url_for('index', category=product.category) }}" 
+               class="btn btn-outline-primary">
+                <i class="fas fa-layer-group me-2"></i>More {{ product.category }}
+            </a>
+            <a href="{{ url_for('index', brand=product.brand) }}" 
+               class="btn btn-outline-secondary">
+                <i class="fas fa-trademark me-2"></i>More {{ product.brand }}
+            </a>
+            <a href="{{ url_for('index', category=product.category, brand=product.brand) }}" 
+               class="btn btn-outline-info">
+                <i class="fas fa-filter me-2"></i>{{ product.brand }} {{ product.category }}
+            </a>
+            <a href="{{ url_for('index') }}" 
+               class="btn btn-outline-dark">
+                <i class="fas fa-home me-2"></i>All Products
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function contactForPrice() {
+        const productName = "{{ product.name }}";
+        const sku = "{{ product.sku }}";
+        const message = `Hello! I'm interested in the ${productName} (SKU: ${sku}). Could you please provide more information and pricing details?`;
+        
+        // You can customize this to open WhatsApp, email, or phone
+        alert("Contact Information:\n\nProduct: " + productName + "\nSKU: " + sku + "\n\nPlease contact us for pricing and availability.");
+        
+        // Example: Open WhatsApp (replace with your number)
+        // const whatsappUrl = `https://wa.me/233XXXXXXXXX?text=${encodeURIComponent(message)}`;
+        // window.open(whatsappUrl, '_blank');
+    }
+    
+    function shareProduct() {
+        if (navigator.share) {
+            navigator.share({
+                title: "{{ product.name }}",
+                text: "Check out this product from Shopdydy: {{ product.name }}",
+                url: window.location.href
+            });
+        } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert("Product link copied to clipboard!");
+            });
+        }
+    }
+    
+    // Image zoom on click
+    document.querySelector('img')?.addEventListener('click', function() {
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.8); display: flex; justify-content: center; 
+            align-items: center; z-index: 1050; cursor: pointer;
+        `;
+        
+        const img = document.createElement('img');
+        img.src = this.src;
+        img.style.cssText = 'max-width: 90%; max-height: 90%; object-fit: contain;';
+        
+        modal.appendChild(img);
+        document.body.appendChild(modal);
+        
+        modal.addEventListener('click', () => {
+            document.body.removeChild(modal);
+        });
+    });
+</script>
+{% endblock %}
