@@ -98,7 +98,6 @@ CATEGORY_MAPPING = {
     # Cables & Adapters
     'cable': ('Accessories', 'Cables', 30, 200),
     'hdmi': ('Accessories', 'Cables', 50, 300),
-    'usb': ('Accessories', 'Cables', 20, 150),
     'vga': ('Accessories', 'Cables', 40, 200),
     'adapter': ('Accessories', 'Adapters', 50, 300),
     'converter': ('Accessories', 'Converters', 80, 400),
