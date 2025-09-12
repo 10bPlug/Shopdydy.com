@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Millisteph.org — Estimates</title>
+  <style>
+    :root{
+      --brand:#2E8B57;        /* sea green */
+      --accent:#FFD700;       /* gold */
+      --ink:#111;
+      --muted:#666;
+      --line:#E8E8EE;
+      --card:#ffffff;
+      --bg:#fafafa;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+    .wrap{max-width:900px;margin:auto;padding:16px}
+    header{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:18px;
+      box-shadow:0 4px 14px rgba(0,0,0,.06);
+      margin-bottom:12px;
+      text-align:center;
+    }
+    header h1{margin:0;font-size:28px;font-weight:800}
+    header p{margin:4px 0;font-size:14px;color:var(--muted)}
+
+    .tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+    .tab{border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;font-weight:600;font-size:14px}
+    .tab[aria-selected="true"]{background:var(--brand);color:#fff}
+
+    .estimate{display:none;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px;box-shadow:0 6px 18px rgba(0,0,0,.05)}
+    .estimate.active{display:block}
+    .info{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;background:#fcfcff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:10px 0}
+    .info small{display:block;color:var(--muted);font-size:12px;font-weight:600}
+    .info span{font-weight:700}
+
+    ol,ul{margin:8px 0 14px 22px}
+    li{margin-bottom:4px}
+
+    table{width:100%;border-collapse:collapse;margin:10px 0}
+    th,td{padding:8px;border-bottom:1px solid var(--line)}
+    th{background:#f8f8f8;text-align:left;font-size:13px}
+    td.qty,td.num{text-align:right;white-space:nowrap}
+
+    .summary{margin:12px 0;display:grid;gap:6px;justify-content:end}
+    .row{display:flex;gap:20px;justify-content:flex-end}
+    .label{color:var(--muted);font-weight:600}
+    .value{min-width:120px;text-align:right;font-weight:700}
+    .total{background:var(--brand);color:#fff;border-radius:10px;padding:8px 12px}
+
+    .disclaimer{font-size:12px;color:#777;border-top:1px dashed var(--line);padding-top:8px;margin-top:8px}
+    footer{text-align:center;font-weight:700;margin:10px 0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>ESTIMATE</h1>
+      <p>Millisteph.org | Contractor: Stephen Kane</p>
+      <p>Tel: 0244220978 / 0201595452 | Email: kanestepone@gmail.com</p>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab" aria-selected="true" aria-controls="e1">Dodowa 1 (v1)</button>
+      <button class="tab" aria-selected="false" aria-controls="e2">Shai Hills 2</button>
+      <button class="tab" aria-selected="false" aria-controls="e3">Shai Hills 1 (Fence)</button>
+      <button class="tab" aria-selected="false" aria-controls="e4">Dodowa 1 (v2)</button>
+    </nav>
+
+    <!-- Estimate 1 -->
+    <section id="e1" class="estimate active">
+      <h3>Client: Dodowa 1 Site</h3>
+      <div class="info">
+        <div><small>Date</small><span>12/09/25</span></div>
+        <div><small>Valid Until</small><span>19/09/25</span></div>
+        <div><small>Invoice #</small><span>0001</span></div>
+      </div>
+      <h4>Details of Work to be Done</h4>
+      <ol>
+        <li>Breaking and Re-building of a sicking retaining wall</li>
+        <li>Building a concreate for tower lader</li>
+        <li>Rebuilding of a sinking genset slab</li>
+        <li>Rebuilding of a sinking DC plant slab</li>
+        <li>Refilling and spreading of chippings (6x8m area)</li>
+      </ol>
+      <h4>Affected Areas</h4>
+      <ul>
+        <li>3 angles of a 10x3 meters area of site fence retaining wall sunked</li>
+        <li>Site sunked below tower lader</li>
+        <li>Genset slab sunked and imbalance</li>
+        <li>DC Plant slab sunked and imbalance</li>
+        <li>Filling of sunked areas & spreading of chippings</li>
+      </ul>
+      <h4>Materials & Services</h4>
+      <table>
+        <tr><th>Description</th><th>Qty</th><th>Unit</th><th>Amount</th></tr>
+        <tr><td>Supply and spreading of chipings</td><td>17 cubic</td><td class="num">300</td><td class="num">5100</td></tr>
+        <tr><td>Supply and transport of sand</td><td>8 cubic</td><td class="num">150</td><td class="num">1200</td></tr>
+        <tr><td>Purchasing cement</td><td>30 bags</td><td class="num">110</td><td class="num">3300</td></tr>
+        <tr><td>Purchasing of water</td><td>lot</td><td class="num">300</td><td class="num">300</td></tr>
+        <tr><td>Breaking & decommining wall</td><td>lot</td><td class="num">1000</td><td class="num">1000</td></tr>
+        <tr><td>Transportation & mobilization</td><td></td><td class="num">1000</td><td class="num">1000</td></tr>
+        <tr><td>Labor charge</td><td></td><td class="num">4000</td><td class="num">4000</td></tr>
+      </table>
+      <div class="summary">
+        <div class="row"><div class="label">Subtotal</div><div class="value">15,900</div></div>
+        <div class="row"><div class="label">VAT (12.5%)</div><div class="value">198.75</div></div>
+        <div class="row total"><div class="label">TOTAL</div><div class="value">16,098.75</div></div>
+      </div>
+      <div class="disclaimer">This estimate is provided for informational purposes only. Final costs may vary depending on site conditions and client requirements.</div>
+    </section>
+
+    <!-- Estimate 2 -->
+    <section id="e2" class="estimate">
+      <h3>Client: Shai Hills 2 Site</h3>
+      <div class="info">
+        <div><small>Date</small><span>12/09/25</span></div>
+        <div><small>Valid Until</small><span>19/09/25</span></div>
+        <div><small>Invoice #</small><span>0002</span></div>
+      </div>
+      <h4>Details of Work to be Done</h4>
+      <ol><li>Breaking and Re-building of a cracked retaining wall</li></ol>
+      <h4>Affected Areas</h4><ul><li>Multiple cracks in the site fence retaining wall</li></ul>
+      <h4>Materials & Services</h4>
+      <table>
+        <tr><th>Description</th><th>Qty</th><th>Unit</th><th>Amount</th></tr>
+        <tr><td>Supply and spreading of chipings</td><td>5 cubic</td><td class="num">300</td><td class="num">1500</td></tr>
+        <tr><td>Supply and transport of sand</td><td>4 cubic</td><td class="num">150</td><td class="num">600</td></tr>
+        <tr><td>Purchasing cement</td><td>10 bags</td><td class="num">110</td><td class="num">1100</td></tr>
+        <tr><td>Purchasing of water</td><td>lot</td><td class="num">200</td><td class="num">200</td></tr>
+        <tr><td>Breaking & decommining wall</td><td>lot</td><td class="num">1000</td><td class="num">1000</td></tr>
+        <tr><td>Transportation & mobilization</td><td></td><td class="num">600</td><td class="num">600</td></tr>
+        <tr><td>Labor charge</td><td></td><td class="num">2000</td><td class="num">2000</td></tr>
+      </table>
+      <div class="summary">
+        <div class="row"><div class="label">Subtotal</div><div class="value">7,000</div></div>
+        <div class="row"><div class="label">VAT (12.5%)</div><div class="value">875</div></div>
+        <div class="row total"><div class="label">TOTAL</div><div class="value">7,875</div></div>
+      </div>
+      <div class="disclaimer">This estimate is provided for informational purposes only. Final costs may vary depending on site conditions and client requirements.</div>
+    </section>
+
+    <!-- Estimate 3 -->
+    <section id="e3" class="estimate">
+      <h3>Client: Shai Hills 1 (Fence & Wall)</h3>
+      <div class="info">
+        <div><small>Date</small><span>12/09/25</span></div>
+        <div><small>Valid Until</small><span>19/09/25</span></div>
+        <div><small>Invoice #</small><span>0003</span></div>
+      </div>
+      <h4>Details of Work to be Done</h4>
+      <ol><li>Building of retaining wall</li><li>Erection of wire mesh fence</li><li>Spreading of chippings</li></ol>
+      <h4>Affected Areas</h4><ul><li>8 meter lenth damage for gate expansion</li><li>To cover the entire site with chippings</li></ul>
+      <h4>Materials & Services</h4>
+      <table>
+        <tr><th>Description</th><th>Qty</th><th>Unit</th><th>Amount</th></tr>
+        <tr><td>Supply and spreading of chipings</td><td>18 cubic</td><td class="num">300</td><td class="num">5400</td></tr>
+        <tr><td>Rubber polenthene</td><td>30m</td><td class="num">13</td><td class="num">390</td></tr>
+        <tr><td>Supply and transport of sand</td><td>4 cubic</td><td class="num">150</td><td class="num">600</td></tr>
+        <tr><td>Purchasing cement</td><td>10 bags</td><td class="num">110</td><td class="num">1100</td></tr>
+        <tr><td>Purchasing of water</td><td>lot</td><td class="num">200</td><td class="num">200</td></tr>
+        <tr><td>Breaking & decommining wall</td><td>lot</td><td class="num">1000</td><td class="num">1000</td></tr>
+        <tr><td>Transportation & mobilization</td><td></td><td class="num">600</td><td class="num">600</td></tr>
+        <tr><td>Labor charge</td><td></td><td class="num">2000</td><td class="num">2000</td></tr>
+      </table>
+      <div class="summary">
+        <div class="row"><div class="label">Subtotal</div><div class="value">11,290</div></div>
+        <div class="row"><div class="label">VAT (12.5%)</div><div class="value">1,411.25</div></div>
+        <div class="row total"><div class="label">TOTAL</div><div class="value">12,701.25</div></div>
+      </div>
+      <div class="disclaimer">This estimate is provided for informational purposes only. Final costs may vary depending on site conditions and client requirements.</div>
+    </section>
+
+    <!-- Estimate 4 -->
+    <section id="e4" class="estimate">
+      <h3>Client: Dodowa 1 Site (v2)</h3>
+      <div class="info">
+        <div><small>Date</small><span>12/09/25</span></div>
+        <div><small>Valid Until</small><span>19/09/25</span></div>
+        <div><small>Invoice #</small><span>0004</span></div>
+      </div>
+      <h4>Details of Work to be Done</h4>
+      <ol><li>Breaking and Re-building of a sicking retaining wall</li><li>Building a concreate for tower lader</li><li>Rebuilding of a sinking genset slab</li><li>Rebuilding of a sinking DC plant slab</li><li>Refilling & spreading of chippings (6x8m area)</li></ol>
+      <h4>Affected Areas</h4>
+      <ul><li>3 angles of a 10x3 meters area of site fence retaining wall sunked</li><li>Site sunked below tower lader</li><li>Genset slab sunked and imbalance</li><li>DC Plant slab sunked and imbalance</li><li>Filling of sunked areas & spreading of chippings</li></ul>
+      <h4>Materials & Services</h4>
+      <table>
+        <tr><th>Description</th><th>Qty</th><th>Unit</th><th>Amount</th></tr>
+        <tr><td>Supply and spreading of chipings</td><td>17 cubic</td><td class="num">300</td><td class="num">5100</td></tr>
+        <tr><td>Supply and transport of sand</td><td>8 cubic</td><td class="num">150</td><td class="num">1200</td></tr>
+        <tr><td>Purchasing cement</td><td>30 bags</td><td class="num">110</td><td class="num">3300</td></tr>
+        <tr><td>Purchasing of water</td><td>lot</td><td class="num">300</td><td class="num">300</td></tr>
+        <tr><td>Breaking & decommining wall</td><td>lot</td><td class="num">1000</td><td class="num">1000</td></tr>
+        <tr><td>Transportation & mobilization</td><td></td><td class="num">1000</td><td class="num">1000</td></tr>
+        <tr><td>Labor charge</td><td></td><td class="num">4000</td><td class="num">4000</td></tr>
+      </table>
+      <div class="summary">
+        <div class="row"><div class="label">Subtotal</div><div class="value">15,900</div></div>
+        <div class="row"><div class="label">VAT (12.5%)</div><div class="value">1,987.5</div></div>
+        <div class="row total"><div class="label">TOTAL</div><div class="value">17,887.00</div></div>
+      </div>
+      <div class="disclaimer">This estimate is provided for informational purposes only. Final costs may vary depending on site conditions and client requirements.</div>
+    </section>
+
+    <footer>Millisteph.org — Building with Integrity</footer>
+  </div>
+
+  <script>
+    const tabs=document.querySelectorAll('.tab');
+    const sections=document.querySelectorAll('.estimate');
+    tabs.forEach(t=>{
+      t.addEventListener('click',()=>{
+        tabs.forEach(tb=>tb.setAttribute('aria-selected','false'));
+        sections.forEach(s=>s.classList.remove('active'));
+        t.setAttribute('aria-selected','true');
+        document.getElementById(t.getAttribute('aria-controls')).classList.add('active');
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+    });
+  </script>
+</body>
+</html>
