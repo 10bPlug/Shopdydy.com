@@ -1,0 +1,10 @@
+{
+  "total_products": 95,
+  "categories": 19,
+  "price_range": {
+    "min": 15.0,
+    "max": 9999.0,
+    "average": 955.9157894736842
+  },
+  "scraping_timestamp": "2025-09-13T15:13:23.630323"
+}
