@@ -19,7 +19,8 @@ UPLOAD_FOLDER = BASE_DIR / "uploads"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 
 app = Flask(__name__)
-app.secret_key = 'shopdydy_secret_key_2024'
+# Use environment-provided secret for sessions; fall back to a random key in dev
+app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY') or os.environ.get('SECRET_KEY') or base64.urlsafe_b64encode(os.urandom(32)).decode('utf-8')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Ensure upload folder exists
@@ -44,6 +45,12 @@ def get_image_base64(image_path):
     except Exception:
         pass
     return None
+
+@app.context_processor
+def inject_current_date():
+    """Inject the current date (UTC) for templates."""
+    from datetime import datetime
+    return {"current_date": datetime.utcnow().strftime('%Y-%m-%d')}
 
 @app.route('/')
 def index():
@@ -189,4 +196,6 @@ if __name__ == '__main__':
     print(f"Database: {DB_PATH}")
     print("Open your browser to: http://localhost:5000")
     
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Respect DEBUG from environment; default to False for safety
+    debug_mode = os.environ.get('FLASK_DEBUG', '').strip() in {'1', 'true', 'True'}
+    app.run(debug=debug_mode, host='0.0.0.0', port=5000)
